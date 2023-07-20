@@ -7,7 +7,11 @@ async fn main() -> tide::Result<()> {
     let mut app = tide::new();
     init_routes(&mut app);
 
-    app.listen("127.0.0.1:8080").await?;
+    let listen_host = std::env::var("LISTEN_HOST")?;
+    let listen_address = std::env::var("LISTEN_ADDRESS")?;
+    let listen_url = format!("{}:{}", listen_host, listen_address);
+
+    app.listen(listen_url).await?;
 
     Ok(())
 }
