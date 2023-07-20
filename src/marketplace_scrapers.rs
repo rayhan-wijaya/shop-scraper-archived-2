@@ -1,13 +1,13 @@
 use crate::models::Product;
 
-pub trait MarketplaceScraper {
-    fn get_products() -> Vec<Product>;
-}
-
 pub struct Tokopedia;
 pub struct Shopee;
 pub struct Blibli;
 pub struct Bukalapak;
+
+pub trait MarketplaceScraper {
+    fn get_products() -> Vec<Product>;
+}
 
 impl MarketplaceScraper for Tokopedia {
     fn get_products() -> Vec<Product> {
