@@ -17,6 +17,8 @@ impl MarketplaceScraper for Tokopedia {
     }
 
     fn get_products() -> Vec<Product> {
+        let document = Self::parse_document();
+
         todo!()
     }
 }
@@ -27,6 +29,8 @@ impl MarketplaceScraper for Shopee {
     }
 
     fn get_products() -> Vec<Product> {
+        let document = Self::parse_document();
+
         todo!()
     }
 }
@@ -37,6 +41,8 @@ impl MarketplaceScraper for Blibli {
     }
 
     fn get_products() -> Vec<Product> {
+        let document = Self::parse_document();
+
         todo!()
     }
 }
@@ -47,6 +53,8 @@ impl MarketplaceScraper for Bukalapak {
     }
 
     fn get_products() -> Vec<Product> {
+        let document = Self::parse_document();
+
         todo!()
     }
 }
