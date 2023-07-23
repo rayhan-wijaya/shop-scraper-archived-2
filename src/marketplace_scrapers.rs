@@ -7,7 +7,7 @@ pub struct Blibli;
 pub struct Bukalapak;
 
 pub trait MarketplaceScraper {
-    fn parse_document(search_query: String) -> Html;
+    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError>;
     fn get_products(search_query: String) -> Vec<Product>;
 }
 
