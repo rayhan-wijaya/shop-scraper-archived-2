@@ -12,7 +12,7 @@ pub trait MarketplaceScraper {
 }
 
 #[derive(Debug)]
-pub enum ParseDocumentError {
+pub enum ScrapingError {
     GetResponseError,
     ResponseTextError,
 }
