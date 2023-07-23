@@ -19,7 +19,14 @@ pub enum ParseDocumentError {
 
 impl MarketplaceScraper for Tokopedia {
     fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
-        todo!()
+        let url = format!("https://tokopedia.com/search?q={}", search_query);
+
+        let response_text = reqwest::blocking::get(url)
+            .map_err(|_| ParseDocumentError::GetResponseError)?
+            .text()
+            .map_err(|_| ParseDocumentError::ResponseTextError)?;
+
+        return Ok(Html::parse_document(&response_text));
     }
 
     fn get_products(search_query: String) -> Vec<Product> {
