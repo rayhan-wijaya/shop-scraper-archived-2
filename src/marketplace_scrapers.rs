@@ -11,6 +11,12 @@ pub trait MarketplaceScraper {
     fn get_products(search_query: String) -> Vec<Product>;
 }
 
+#[derive(Debug)]
+pub enum ParseDocumentError {
+    GetResponseError,
+    ResponseTextError,
+}
+
 impl MarketplaceScraper for Tokopedia {
     fn parse_document(search_query: String) -> Html {
         todo!()
