@@ -8,7 +8,7 @@ pub struct Blibli;
 pub struct Bukalapak;
 
 pub trait MarketplaceScraper {
-    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError>;
+    fn parse_document(search_query: String) -> Result<Html, ScrapingError>;
     fn get_products(search_query: String) -> Vec<Product>;
 }
 
@@ -29,13 +29,13 @@ impl fmt::Display for ScrapingError {
 }
 
 impl MarketplaceScraper for Tokopedia {
-    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
+    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
         let url = format!("https://tokopedia.com/search?q={}", search_query);
 
         let response_text = reqwest::blocking::get(url)
-            .map_err(|_| ParseDocumentError::GetResponseError)?
+            .map_err(|_| ScrapingError::GetResponseError)?
             .text()
-            .map_err(|_| ParseDocumentError::ResponseTextError)?;
+            .map_err(|_| ScrapingError::ResponseTextError)?;
 
         return Ok(Html::parse_document(&response_text));
     }
@@ -48,7 +48,7 @@ impl MarketplaceScraper for Tokopedia {
 }
 
 impl MarketplaceScraper for Shopee {
-    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
+    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
         todo!()
     }
 
@@ -60,7 +60,7 @@ impl MarketplaceScraper for Shopee {
 }
 
 impl MarketplaceScraper for Blibli {
-    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
+    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
         todo!()
     }
 
@@ -72,7 +72,7 @@ impl MarketplaceScraper for Blibli {
 }
 
 impl MarketplaceScraper for Bukalapak {
-    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
+    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
         todo!()
     }
 
