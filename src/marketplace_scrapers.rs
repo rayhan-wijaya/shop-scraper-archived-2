@@ -18,7 +18,7 @@ pub enum ParseDocumentError {
 }
 
 impl MarketplaceScraper for Tokopedia {
-    fn parse_document(search_query: String) -> Html {
+    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
         todo!()
     }
 
@@ -30,7 +30,7 @@ impl MarketplaceScraper for Tokopedia {
 }
 
 impl MarketplaceScraper for Shopee {
-    fn parse_document(search_query: String) -> Html {
+    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
         todo!()
     }
 
@@ -42,7 +42,7 @@ impl MarketplaceScraper for Shopee {
 }
 
 impl MarketplaceScraper for Blibli {
-    fn parse_document(search_query: String) -> Html {
+    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
         todo!()
     }
 
@@ -54,7 +54,7 @@ impl MarketplaceScraper for Blibli {
 }
 
 impl MarketplaceScraper for Bukalapak {
-    fn parse_document(search_query: String) -> Html {
+    fn parse_document(search_query: String) -> Result<Html, ParseDocumentError> {
         todo!()
     }
 
