@@ -1,5 +1,6 @@
 use crate::models::Product;
 use scraper::Html;
+use std::fmt;
 
 pub struct Tokopedia;
 pub struct Shopee;
@@ -11,10 +12,20 @@ pub trait MarketplaceScraper {
     fn get_products(search_query: String) -> Vec<Product>;
 }
 
-#[derive(Debug)]
 pub enum ScrapingError {
     GetResponseError,
     ResponseTextError,
+}
+
+impl fmt::Display for ScrapingError {
+    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+        let message = match self {
+            ScrapingError::GetResponseError => "Failed to get a response",
+            ScrapingError::ResponseTextError => "Failed to get text out of response",
+        };
+
+        return write!(formatter, "{}", message);
+    }
 }
 
 impl MarketplaceScraper for Tokopedia {
