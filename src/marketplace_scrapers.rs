@@ -9,7 +9,7 @@ pub struct Bukalapak;
 
 pub trait MarketplaceScraper {
     fn parse_document(search_query: String) -> Result<Html, ScrapingError>;
-    fn get_products(search_query: String) -> Vec<Product>;
+    fn get_products(search_query: String) -> Result<Vec<Product>, ScrapingError>;
 }
 
 pub enum ScrapingError {
