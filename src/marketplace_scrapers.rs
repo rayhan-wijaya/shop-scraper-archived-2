@@ -23,6 +23,7 @@ impl fmt::Display for ScrapingError {
         let message = match self {
             ScrapingError::GetResponseError => "Failed to get a response",
             ScrapingError::ResponseTextError => "Failed to get text out of response",
+            ScrapingError::ParseSelectorError => "Failed to parse a dom selector",
         };
 
         return write!(formatter, "{}", message);
