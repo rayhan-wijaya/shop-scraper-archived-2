@@ -13,5 +13,5 @@ async fn main() -> tide::Result<()> {
 
     app.listen(listen_url).await?;
 
-    Ok(())
+    return Ok(());
 }
