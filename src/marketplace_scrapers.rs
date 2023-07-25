@@ -39,7 +39,9 @@ impl MarketplaceScraper for Tokopedia {
             .text()
             .map_err(|_| ScrapingError::ResponseTextError)?;
 
-        return Ok(Html::parse_document(&response_text));
+        let document = Html::parse_document(&response_text);
+
+        return Ok(document);
     }
 
     fn get_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
@@ -58,7 +60,9 @@ impl MarketplaceScraper for Shopee {
             .text()
             .map_err(|_| ScrapingError::ResponseTextError)?;
 
-        return Ok(Html::parse_document(&response_text));
+        let document = Html::parse_document(&response_text);
+
+        return Ok(document);
     }
 
     fn get_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
