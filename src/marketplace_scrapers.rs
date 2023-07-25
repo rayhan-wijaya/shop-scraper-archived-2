@@ -15,6 +15,7 @@ pub trait MarketplaceScraper {
 pub enum ScrapingError {
     GetResponseError,
     ResponseTextError,
+    ParseSelectorError,
 }
 
 impl fmt::Display for ScrapingError {
