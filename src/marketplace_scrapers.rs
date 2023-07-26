@@ -44,7 +44,7 @@ impl MarketplaceScraper for Tokopedia {
         return Ok(document);
     }
 
-    fn get_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
@@ -65,7 +65,7 @@ impl MarketplaceScraper for Shopee {
         return Ok(document);
     }
 
-    fn get_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
@@ -77,7 +77,7 @@ impl MarketplaceScraper for Blibli {
         todo!()
     }
 
-    fn get_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
@@ -89,7 +89,7 @@ impl MarketplaceScraper for Bukalapak {
         todo!()
     }
 
-    fn get_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
