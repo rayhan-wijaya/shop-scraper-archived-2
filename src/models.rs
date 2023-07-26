@@ -3,5 +3,6 @@ pub struct Product {
     pub name: String,
     pub image_url: String,
     pub url: String,
+    pub rating: f32,
     pub price_in_idr: f32,
 }
