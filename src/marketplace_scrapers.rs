@@ -21,6 +21,20 @@ pub enum ScrapingError {
     ParseElementError,
 }
 
+impl fmt::Display for ScrapingError {
+    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+        let message = match self {
+            ScrapingError::GetResponseError => "Failed to get a response",
+            ScrapingError::ResponseTextError => "Failed to get text out of response",
+            ScrapingError::ParseSelectorError => "Failed to parse a dom selector",
+            ScrapingError::MissingElementError => "A dom element wasn't found",
+            ScrapingError::ParseElementError => "Failed to parse a dom element's text node",
+        };
+
+        return write!(formatter, "{}", message);
+    }
+}
+
 struct ResponseText;
 
 impl ResponseText {
@@ -61,20 +75,6 @@ impl DomNode {
             .text()
             .next().ok_or(ScrapingError::MissingElementError)?
             .parse::<F>().map_err(|_| ScrapingError::ParseElementError);
-    }
-}
-
-impl fmt::Display for ScrapingError {
-    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-        let message = match self {
-            ScrapingError::GetResponseError => "Failed to get a response",
-            ScrapingError::ResponseTextError => "Failed to get text out of response",
-            ScrapingError::ParseSelectorError => "Failed to parse a dom selector",
-            ScrapingError::MissingElementError => "A dom element wasn't found",
-            ScrapingError::ParseElementError => "Failed to parse a dom element's text node",
-        };
-
-        return write!(formatter, "{}", message);
     }
 }
 
