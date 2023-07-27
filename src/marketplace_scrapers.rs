@@ -1,5 +1,6 @@
 use crate::models::Product;
 use scraper::Html;
+use reqwest::IntoUrl;
 use std::fmt;
 
 pub struct Tokopedia;
@@ -16,6 +17,20 @@ pub enum ScrapingError {
     GetResponseError,
     ResponseTextError,
     ParseSelectorError,
+}
+
+struct ResponseText;
+
+impl ResponseText {
+    fn from<T>(url: T) -> Result<String, ScrapingError>
+    where
+        T: IntoUrl
+    {
+        return reqwest::blocking::get(url)
+            .map_err(|_| ScrapingError::GetResponseError)?
+            .text()
+            .map_err(|_| ScrapingError::ResponseTextError);
+    }
 }
 
 impl fmt::Display for ScrapingError {
