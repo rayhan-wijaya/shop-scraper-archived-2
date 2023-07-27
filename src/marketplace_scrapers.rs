@@ -53,7 +53,7 @@ impl DomNode {
             .next().ok_or(ScrapingError::MissingElementError);
     }
 
-    fn get_text<F>(parent_element: ElementRef) -> Result<F, ScrapingError>
+    fn get_first_text<F>(parent_element: ElementRef) -> Result<F, ScrapingError>
     where
         F: std::str::FromStr
     {
