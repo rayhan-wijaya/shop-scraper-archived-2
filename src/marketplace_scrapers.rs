@@ -3,15 +3,15 @@ use reqwest::IntoUrl;
 use scraper::{Html, Selector, ElementRef};
 use std::fmt;
 
-pub struct Tokopedia;
-pub struct Shopee;
-pub struct Blibli;
-pub struct Bukalapak;
-
 pub trait MarketplaceScraper {
     fn parse_document(search_query: String) -> Result<Html, ScrapingError>;
     fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError>;
 }
+
+pub struct Tokopedia;
+pub struct Shopee;
+pub struct Blibli;
+pub struct Bukalapak;
 
 pub enum ScrapingError {
     GetResponseError,
