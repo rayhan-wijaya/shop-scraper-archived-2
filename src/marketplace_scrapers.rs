@@ -51,6 +51,12 @@ impl DomNode {
             .select(selector)
             .next().ok_or(ScrapingError::MissingElementError);
     }
+
+    fn get_text(parent_element: ElementRef) -> Result<&str, ScrapingError> {
+        return parent_element
+            .text()
+            .next().ok_or(ScrapingError::MissingElementError);
+    }
 }
 
 impl fmt::Display for ScrapingError {
