@@ -17,6 +17,7 @@ pub enum ScrapingError {
     GetResponseError,
     ResponseTextError,
     ParseSelectorError,
+    MissingElementError,
 }
 
 struct ResponseText;
