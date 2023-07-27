@@ -65,6 +65,7 @@ impl fmt::Display for ScrapingError {
             ScrapingError::GetResponseError => "Failed to get a response",
             ScrapingError::ResponseTextError => "Failed to get text out of response",
             ScrapingError::ParseSelectorError => "Failed to parse a dom selector",
+            ScrapingError::MissingElementError => "A dom element wasn't found",
         };
 
         return write!(formatter, "{}", message);
