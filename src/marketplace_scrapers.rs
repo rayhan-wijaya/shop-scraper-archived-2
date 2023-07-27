@@ -1,6 +1,6 @@
 use crate::models::Product;
-use scraper::Html;
 use reqwest::IntoUrl;
+use scraper::{Html, Selector};
 use std::fmt;
 
 pub struct Tokopedia;
@@ -30,6 +30,15 @@ impl ResponseText {
             .map_err(|_| ScrapingError::GetResponseError)?
             .text()
             .map_err(|_| ScrapingError::ResponseTextError);
+    }
+}
+
+struct ScrapingSelector;
+
+impl ScrapingSelector {
+    fn parse(selectors: &str) -> Result<Selector, ScrapingError> {
+        return Selector::parse(selectors)
+            .map_err(|_| ScrapingError::ParseSelectorError);
     }
 }
 
