@@ -1,6 +1,6 @@
 use crate::models::Product;
 use reqwest::IntoUrl;
-use scraper::{Html, Selector};
+use scraper::{Html, Selector, ElementRef};
 use std::fmt;
 
 pub struct Tokopedia;
@@ -40,6 +40,16 @@ impl ScrapingSelector {
     fn parse(selectors: &str) -> Result<Selector, ScrapingError> {
         return Selector::parse(selectors)
             .map_err(|_| ScrapingError::ParseSelectorError);
+    }
+}
+
+struct DomNode;
+
+impl DomNode {
+    fn from_selector<'a>(selector: &Selector, parent_element: ElementRef<'a>) -> Result<ElementRef<'a>, ScrapingError> {
+        return parent_element
+            .select(selector)
+            .next().ok_or(ScrapingError::MissingElementError);
     }
 }
 
