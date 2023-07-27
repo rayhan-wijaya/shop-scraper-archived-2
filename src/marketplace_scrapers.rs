@@ -49,11 +49,7 @@ impl MarketplaceScraper for Tokopedia {
     fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
         let url = format!("https://tokopedia.com/search?q={}", search_query);
 
-        let response_text = reqwest::blocking::get(url)
-            .map_err(|_| ScrapingError::GetResponseError)?
-            .text()
-            .map_err(|_| ScrapingError::ResponseTextError)?;
-
+        let response_text = ResponseText::from(&url)?;
         let document = Html::parse_document(&response_text);
 
         return Ok(document);
