@@ -49,9 +49,9 @@ impl ResponseText {
     }
 }
 
-struct ScrapingSelector;
+struct DomSelector;
 
-impl ScrapingSelector {
+impl DomSelector {
     fn parse(selectors: &str) -> Result<Selector, ScrapingError> {
         return Selector::parse(selectors)
             .map_err(|_| ScrapingError::ParseSelectorError);
