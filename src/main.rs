@@ -8,8 +8,8 @@ async fn main() -> tide::Result<()> {
     init_routes(&mut app);
 
     let listen_host = std::env::var("LISTEN_HOST")?;
-    let listen_address = std::env::var("LISTEN_ADDRESS")?;
-    let listen_url = format!("{}:{}", listen_host, listen_address);
+    let listen_port = std::env::var("LISTEN_PORT")?;
+    let listen_url = format!("{}:{}", listen_host, listen_port);
 
     app.listen(listen_url).await?;
 
