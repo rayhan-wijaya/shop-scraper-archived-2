@@ -130,6 +130,17 @@ impl MarketplaceScraper for Tokopedia {
                     .value()
                     .attr("src")
                     .map(|image_url| image_url.to_string());
+
+                let product = Product {
+                    id: 69420,
+                    name,
+                    rating,
+                    image_url,
+                    price_in_idr,
+                    url,
+                };
+
+                products.push(product);
             }
         }
 
