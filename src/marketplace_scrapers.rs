@@ -27,7 +27,7 @@ impl ScrapingError<'_> {
             ScrapingError::ResponseTextError { url } => &format!("Failed to get text out of response at {}", url),
             ScrapingError::ParseSelectorError { selectors } => &format!("Failed to parse a dom selector, {}", selectors),
             ScrapingError::MissingElementError => &"A dom element wasn't found",
-            ScrapingError::ParseElementError => &format!("Failed to parse a dom element's text node"),
+            ScrapingError::ParseElementError { text } => &format!("Failed to parse a dom element's text node, {}", text),
         };
 
         return message;
