@@ -2957,6 +2957,7 @@ checksum = "45bb67a18fa91266cc7807181f62f9178a6873bfad7dc788c42e6430db40184f"
 name = "shop-scraper"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "async-std",
  "cargo-watch",
  "cssparser 0.31.2",
