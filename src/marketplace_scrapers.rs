@@ -1,7 +1,6 @@
 use crate::models::Product;
 use reqwest::IntoUrl;
 use scraper::{Html, Selector, ElementRef};
-use std::fmt;
 
 pub trait MarketplaceScraper {
     fn parse_document<'a>(search_query: String) -> Result<Html, ScrapingError<'a>>;
@@ -21,8 +20,8 @@ pub enum ScrapingError<'a> {
     ParseElementError { text: &'a str },
 }
 
-impl fmt::Display for ScrapingError {
-    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+impl ScrapingError<'_> {
+    fn message(&self) -> &str {
         let message = match self {
             ScrapingError::GetResponseError { url } => &format!("Failed to get a response at {}", url),
             ScrapingError::ResponseTextError { url } => &format!("Failed to get text out of response at {}", url),
@@ -31,7 +30,7 @@ impl fmt::Display for ScrapingError {
             ScrapingError::ParseElementError => &format!("Failed to parse a dom element's text node"),
         };
 
-        return write!(formatter, "{}", message);
+        return message;
     }
 }
 
