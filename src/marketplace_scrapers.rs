@@ -24,11 +24,11 @@ pub enum ScrapingError<'a> {
 impl fmt::Display for ScrapingError {
     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
         let message = match self {
-            ScrapingError::GetResponseError => "Failed to get a response",
-            ScrapingError::ResponseTextError => "Failed to get text out of response",
-            ScrapingError::ParseSelectorError => "Failed to parse a dom selector",
-            ScrapingError::MissingElementError => "A dom element wasn't found",
-            ScrapingError::ParseElementError => "Failed to parse a dom element's text node",
+            ScrapingError::GetResponseError { url } => &format!("Failed to get a response at {}", url),
+            ScrapingError::ResponseTextError { url } => &format!("Failed to get text out of response at {}", url),
+            ScrapingError::ParseSelectorError { selectors } => &format!("Failed to parse a dom selector, {}", selectors),
+            ScrapingError::MissingElementError => &"A dom element wasn't found",
+            ScrapingError::ParseElementError => &format!("Failed to parse a dom element's text node"),
         };
 
         return write!(formatter, "{}", message);
