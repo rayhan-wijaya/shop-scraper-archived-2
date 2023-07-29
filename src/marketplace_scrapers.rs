@@ -106,7 +106,7 @@ impl MarketplaceScraper for Shopee {
         return Ok(document);
     }
 
-    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products<'a>(search_query: String) -> Result<Vec<Product>, ScrapingError<'a>> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
