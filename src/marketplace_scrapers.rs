@@ -124,6 +124,12 @@ impl MarketplaceScraper for Tokopedia {
                 let rating = rating_element
                     .and_then(|rating_element| DomNode::get_first_text(rating_element).ok())
                     .and_then(|rating_text| rating_text.parse::<f32>().ok());
+
+                let image_element = DomNode::from_selector(&image_selector, product_element)?;
+                let image_url = image_element
+                    .value()
+                    .attr("src")
+                    .map(|image_url| image_url.to_string());
             }
         }
 
