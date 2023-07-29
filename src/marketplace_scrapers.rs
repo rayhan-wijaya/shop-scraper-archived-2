@@ -108,6 +108,9 @@ impl MarketplaceScraper for Tokopedia {
                 if url.starts_with("https://ta.tokopedia.com") {
                     continue;
                 }
+
+                let name_element = DomNode::from_selector(&name_selector, product_element)?;
+                let name = DomNode::get_first_text(name_element)?.to_string();
             }
         }
 
