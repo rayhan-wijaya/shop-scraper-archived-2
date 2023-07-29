@@ -34,6 +34,12 @@ impl ScrapingError<'_> {
     }
 }
 
+impl std::error::Error for ScrapingError<'_> {
+    fn description(&self) -> &str {
+        return self.message();
+    }
+}
+
 struct ResponseText;
 
 impl ResponseText {
