@@ -100,6 +100,11 @@ impl MarketplaceScraper for Tokopedia {
         let image_selector = DomSelector::parse(r#"img.css-1q90pod"#)?;
         let link_selector = DomSelector::parse(r#"a.pcv3__info-content"#)?;
 
+        for product_element in document.select(&product_selector) {
+            let link_element = DomNode::from_selector(&link_selector, product_element)?;
+            let url = link_element.value().attr("href").map(|link_url| String::from(link_url));
+        }
+
         return Ok(products);
     }
 }
