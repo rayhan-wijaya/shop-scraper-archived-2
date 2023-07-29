@@ -119,6 +119,11 @@ impl MarketplaceScraper for Tokopedia {
                 let price_in_idr = price_in_idr_text
                     .parse::<f32>()
                     .map_err(|_| ScrapingError::ParseElementError { text: price_in_idr_text })?;
+
+                let rating_element = DomNode::from_selector(&rating_selector, product_element).ok();
+                let rating = rating_element
+                    .and_then(|rating_element| DomNode::get_first_text(rating_element).ok())
+                    .and_then(|rating_text| rating_text.parse::<f32>().ok());
             }
         }
 
