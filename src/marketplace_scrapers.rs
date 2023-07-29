@@ -13,12 +13,12 @@ pub struct Shopee;
 pub struct Blibli;
 pub struct Bukalapak;
 
-pub enum ScrapingError {
-    GetResponseError,
-    ResponseTextError,
-    ParseSelectorError,
+pub enum ScrapingError<'a> {
+    GetResponseError { url: &'a str },
+    ResponseTextError { url: &'a str },
+    ParseSelectorError { selectors: &'a str },
     MissingElementError,
-    ParseElementError,
+    ParseElementError { text: &'a str },
 }
 
 impl fmt::Display for ScrapingError {
