@@ -57,7 +57,7 @@ impl ResponseText {
 struct DomSelector;
 
 impl DomSelector {
-    fn parse<'a>(selectors: &str) -> Result<Selector, ScrapingError<'a>> {
+    fn parse<'a>(selectors: &str) -> Result<Selector, ScrapingError<'_>> {
         return Selector::parse(selectors)
             .map_err(|_| ScrapingError::ParseSelectorError);
     }
@@ -66,13 +66,13 @@ impl DomSelector {
 struct DomNode;
 
 impl DomNode {
-    fn from_selector<'a>(selector: &Selector, parent_element: ElementRef<'a>) -> Result<ElementRef<'a>, ScrapingError> {
+    fn from_selector<'a>(selector: &Selector, parent_element: ElementRef<'a>) -> Result<ElementRef<'a>, ScrapingError<'a>> {
         return parent_element
             .select(selector)
             .next().ok_or(ScrapingError::MissingElementError);
     }
 
-    fn get_first_text(parent_element: ElementRef) -> Result<&str, ScrapingError> {
+    fn get_first_text(parent_element: ElementRef) -> Result<&str, ScrapingError<'_>> {
         return parent_element
             .text()
             .next().ok_or(ScrapingError::MissingElementError);
