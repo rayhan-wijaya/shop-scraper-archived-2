@@ -111,6 +111,14 @@ impl MarketplaceScraper for Tokopedia {
 
                 let name_element = DomNode::from_selector(&name_selector, product_element)?;
                 let name = DomNode::get_first_text(name_element)?.to_string();
+
+                let price_element = DomNode::from_selector(&price_selector, product_element)?;
+                let price_in_idr_text = DomNode::get_first_text(price_element)?
+                    .replace("Rp", "")
+                    .replace(".", "");
+                let price_in_idr = price_in_idr_text
+                    .parse::<f32>()
+                    .map_err(|_| ScrapingError::ParseElementError { text: price_in_idr_text })?;
             }
         }
 
