@@ -91,8 +91,9 @@ impl MarketplaceScraper for Tokopedia {
 
     fn get_cheap_products<'a>(search_query: String) -> Result<Vec<Product>, ScrapingError<'a>> {
         let document = Self::parse_document(search_query)?;
+        let mut products: Vec<Product> = Vec::new();
 
-        todo!()
+        return Ok(products);
     }
 }
 
