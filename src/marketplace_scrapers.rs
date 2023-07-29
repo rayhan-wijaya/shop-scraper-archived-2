@@ -57,7 +57,7 @@ impl ResponseText {
 struct DomSelector;
 
 impl DomSelector {
-    fn parse(selectors: &str) -> Result<Selector, ScrapingError> {
+    fn parse<'a>(selectors: &str) -> Result<Selector, ScrapingError<'a>> {
         return Selector::parse(selectors)
             .map_err(|_| ScrapingError::ParseSelectorError);
     }
