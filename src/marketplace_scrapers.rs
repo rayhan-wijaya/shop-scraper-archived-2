@@ -103,6 +103,12 @@ impl MarketplaceScraper for Tokopedia {
         for product_element in document.select(&product_selector) {
             let link_element = DomNode::from_selector(&link_selector, product_element)?;
             let url = link_element.value().attr("href").map(|link_url| String::from(link_url));
+
+            if let Some(url) = url {
+                if url.starts_with("https://ta.tokopedia.com") {
+                    continue;
+                }
+            }
         }
 
         return Ok(products);
