@@ -48,7 +48,7 @@ impl ResponseText {
         T: IntoUrl
     {
         return reqwest::blocking::get(url)
-            .map_err(|_| ScrapingError::GetResponseError)?
+            .map_err(|_| ScrapingError::GetResponseError { url })?
             .text()
             .map_err(|_| ScrapingError::ResponseTextError);
     }
