@@ -43,7 +43,7 @@ impl std::error::Error for ScrapingError<'_> {
 struct ResponseText;
 
 impl ResponseText {
-    fn from<T>(url: T) -> Result<String, ScrapingError>
+    fn from<'a, T>(url: T) -> Result<String, ScrapingError<'a>>
     where
         T: IntoUrl
     {
