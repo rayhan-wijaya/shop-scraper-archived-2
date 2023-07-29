@@ -93,6 +93,13 @@ impl MarketplaceScraper for Tokopedia {
         let document = Self::parse_document(search_query)?;
         let mut products: Vec<Product> = Vec::new();
 
+        let product_selector = DomSelector::parse(r#"div.pcv3__container"#)?;
+        let name_selector = DomSelector::parse(r#"div.prd_link-product-name"#)?;
+        let price_selector = DomSelector::parse(r#"div.prd_link-product-price"#)?;
+        let rating_selector = DomSelector::parse(r#"span.prd_rating-average-text"#)?;
+        let image_selector = DomSelector::parse(r#"img.css-1q90pod"#)?;
+        let link_selector = DomSelector::parse(r#"a.pcv3__info-content"#)?;
+
         return Ok(products);
     }
 }
