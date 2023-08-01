@@ -12,6 +12,7 @@ pub struct Shopee;
 pub struct Blibli;
 pub struct Bukalapak;
 
+#[derive(Debug)]
 pub enum ScrapingError {
     GetResponseError(reqwest::Error),
     ResponseTextError(reqwest::Error),
