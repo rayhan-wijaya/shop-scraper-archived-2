@@ -155,7 +155,7 @@ impl MarketplaceScraper for Tokopedia {
 }
 
 impl MarketplaceScraper for Shopee {
-    fn parse_document<'a>(search_query: String) -> Result<Html, ScrapingError<'a>> {
+    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
         let url = format!("https://shopee.com/search?keyword={}", search_query);
 
         let response_text = ResponseText::from(&url)?;
@@ -164,7 +164,7 @@ impl MarketplaceScraper for Shopee {
         return Ok(document);
     }
 
-    fn get_cheap_products<'a>(search_query: String) -> Result<Vec<Product>, ScrapingError<'a>> {
+    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
