@@ -86,7 +86,7 @@ impl DomNode {
 }
 
 impl MarketplaceScraper for Tokopedia {
-    fn parse_document<'a>(search_query: String) -> Result<Html, ScrapingError<'a>> {
+    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
         let url = format!("https://tokopedia.com/search?q={}", search_query);
 
         let response_text = ResponseText::from(&url)?;
@@ -95,7 +95,7 @@ impl MarketplaceScraper for Tokopedia {
         return Ok(document);
     }
 
-    fn get_cheap_products<'a>(search_query: String) -> Result<Vec<Product>, ScrapingError<'a>> {
+    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
         let mut products: Vec<Product> = Vec::new();
 
