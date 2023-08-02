@@ -23,15 +23,13 @@ pub enum ScrapingError {
 
 impl ScrapingError {
     fn message(&self) -> String {
-        let message = match self {
+        return match self {
             ScrapingError::GetResponseError(error) => format!("Failed to get a response at {:?}", error.url()),
             ScrapingError::ResponseTextError(error) => format!("Failed to get text out of response at {:?}", error.url()),
             ScrapingError::ParseSelectorError => String::from("Failed to parse a dom selector"),
             ScrapingError::MissingElementError => String::from("A dom element wasn't found"),
             ScrapingError::ParseElementError => String::from("Failed to parse a dom element's text node"),
         };
-
-        return message;
     }
 }
 
