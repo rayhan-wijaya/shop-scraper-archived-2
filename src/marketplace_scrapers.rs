@@ -63,7 +63,7 @@ impl ResponseText {
 struct DomSelector;
 
 impl DomSelector {
-    fn parse<'a>(selectors: &str) -> Result<Selector, ScrapingError<'_>> {
+    fn parse(selectors: &str) -> Result<Selector, ScrapingError> {
         return Selector::parse(selectors)
             .map_err(|_| ScrapingError::ParseSelectorError);
     }
