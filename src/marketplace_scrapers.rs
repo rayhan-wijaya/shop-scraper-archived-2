@@ -1,6 +1,7 @@
 use crate::models::Product;
 use reqwest::IntoUrl;
 use scraper::{Html, Selector, ElementRef};
+use std::fmt::Display;
 
 pub trait MarketplaceScraper {
     fn parse_document(search_query: String) -> Result<Html, ScrapingError>;
@@ -36,6 +37,12 @@ impl ScrapingError {
 impl std::error::Error for ScrapingError<'_> {
     fn description(&self) -> &str {
         return self.message();
+    }
+}
+
+impl Display for ScrapingError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        return write!(f, "{}", self.message());
     }
 }
 
