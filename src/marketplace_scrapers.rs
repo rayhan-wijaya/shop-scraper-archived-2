@@ -49,14 +49,14 @@ impl Display for ScrapingError {
 struct ResponseText;
 
 impl ResponseText {
-    fn from<'a, T>(url: T) -> Result<String, ScrapingError<'a>>
+    fn from<T>(url: T) -> Result<String, ScrapingError>
     where
         T: IntoUrl
     {
         return reqwest::blocking::get(url)
-            .map_err(|_| ScrapingError::GetResponseError { url })?
+            .map_err(|error| ScrapingError::GetResponseError(error))?
             .text()
-            .map_err(|_| ScrapingError::ResponseTextError);
+            .map_err(|error| ScrapingError::ResponseTextError(error));
     }
 }
 
