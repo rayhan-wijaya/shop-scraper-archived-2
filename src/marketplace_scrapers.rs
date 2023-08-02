@@ -21,14 +21,14 @@ pub enum ScrapingError {
     ParseElementError,
 }
 
-impl ScrapingError<'_> {
-    fn message(&self) -> &str {
+impl ScrapingError {
+    fn message(&self) -> String {
         let message = match self {
-            ScrapingError::GetResponseError { url } => &format!("Failed to get a response at {}", url),
-            ScrapingError::ResponseTextError { url } => &format!("Failed to get text out of response at {}", url),
-            ScrapingError::ParseSelectorError { selectors } => &format!("Failed to parse a dom selector, {}", selectors),
-            ScrapingError::MissingElementError => &"A dom element wasn't found",
-            ScrapingError::ParseElementError { text } => &format!("Failed to parse a dom element's text node, {}", text),
+            ScrapingError::GetResponseError(error) => format!("Failed to get a response at {:?}", error.url()),
+            ScrapingError::ResponseTextError(error) => format!("Failed to get text out of response at {:?}", error.url()),
+            ScrapingError::ParseSelectorError => String::from("Failed to parse a dom selector"),
+            ScrapingError::MissingElementError => String::from("A dom element wasn't found"),
+            ScrapingError::ParseElementError => String::from("Failed to parse a dom element's text node"),
         };
 
         return message;
