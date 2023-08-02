@@ -34,11 +34,7 @@ impl ScrapingError {
     }
 }
 
-impl std::error::Error for ScrapingError<'_> {
-    fn description(&self) -> &str {
-        return self.message();
-    }
-}
+impl StdError for ScrapingError {}
 
 impl Display for ScrapingError {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
