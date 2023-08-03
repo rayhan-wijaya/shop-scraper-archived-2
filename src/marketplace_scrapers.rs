@@ -4,8 +4,8 @@ use scraper::{Html, Selector, ElementRef};
 use std::{fmt::Display, error::Error as StdError};
 
 pub trait MarketplaceScraper {
-    fn parse_document(search_query: String) -> Result<Html, ScrapingError>;
-    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError>;
+    fn parse_document<'a>(search_query: &'a str) -> Result<Html, ScrapingError>;
+    fn get_cheap_products<'a>(search_query: &'a str) -> Result<Vec<Product>, ScrapingError>;
 }
 
 pub struct Tokopedia;
