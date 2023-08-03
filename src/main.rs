@@ -1,4 +1,5 @@
 use shop_scraper::routes::init_routes;
+use std::env::var;
 
 #[async_std::main]
 async fn main() -> tide::Result<()> {
@@ -9,8 +10,8 @@ async fn main() -> tide::Result<()> {
 
     let listen_url = format!(
         "{}:{}",
-        std::env::var("LISTEN_HOST")?,
-        std::env::var("LISTEN_PORT")?
+        var("LISTEN_HOST")?,
+        var("LISTEN_PORT")?
     );
 
     app.listen(listen_url).await?;
