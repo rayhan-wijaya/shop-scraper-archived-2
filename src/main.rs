@@ -1,4 +1,4 @@
-use shop_scraper::routes::init_routes;
+use shop_scraper::app::init_routes;
 use std::env::var;
 
 #[async_std::main]
