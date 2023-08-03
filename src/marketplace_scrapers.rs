@@ -82,7 +82,7 @@ impl DomNode {
 }
 
 impl MarketplaceScraper for Tokopedia {
-    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
+    fn parse_document<'a>(search_query: &'a str) -> Result<Html, ScrapingError> {
         let url = format!("https://tokopedia.com/search?q={}", search_query);
 
         let response_text = ResponseText::from(&url)?;
@@ -91,7 +91,7 @@ impl MarketplaceScraper for Tokopedia {
         return Ok(document);
     }
 
-    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products<'a>(search_query: &'a str) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
         let mut products: Vec<Product> = Vec::new();
 
@@ -149,7 +149,7 @@ impl MarketplaceScraper for Tokopedia {
 }
 
 impl MarketplaceScraper for Shopee {
-    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
+    fn parse_document<'a>(search_query: &'a str) -> Result<Html, ScrapingError> {
         let url = format!("https://shopee.com/search?keyword={}", search_query);
 
         let response_text = ResponseText::from(&url)?;
@@ -158,7 +158,7 @@ impl MarketplaceScraper for Shopee {
         return Ok(document);
     }
 
-    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products<'a>(search_query: &'a str) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
@@ -166,11 +166,11 @@ impl MarketplaceScraper for Shopee {
 }
 
 impl MarketplaceScraper for Blibli {
-    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
+    fn parse_document<'a>(search_query: &'a str) -> Result<Html, ScrapingError> {
         todo!()
     }
 
-    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products<'a>(search_query: &'a str) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
@@ -178,11 +178,11 @@ impl MarketplaceScraper for Blibli {
 }
 
 impl MarketplaceScraper for Bukalapak {
-    fn parse_document(search_query: String) -> Result<Html, ScrapingError> {
+    fn parse_document<'a>(search_query: &'a str) -> Result<Html, ScrapingError> {
         todo!()
     }
 
-    fn get_cheap_products(search_query: String) -> Result<Vec<Product>, ScrapingError> {
+    fn get_cheap_products<'a>(search_query: &'a str) -> Result<Vec<Product>, ScrapingError> {
         let document = Self::parse_document(search_query)?;
 
         todo!()
